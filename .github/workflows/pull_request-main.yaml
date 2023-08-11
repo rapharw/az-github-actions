@@ -1,0 +1,22 @@
+name: Build and Test (Main)
+on:
+  pull_request:
+    branches:
+      - main # ou a branch que deseja implantar
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+        
+    - name: Build with Gradle
+      run: ./gradlew bootJar
+      working-directory: ./
